@@ -8,21 +8,27 @@
 
 /* Begin PBXBuildFile section */
 		FE011D2C248D3D720000434F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE011D2B248D3D720000434F /* AppDelegate.swift */; };
-		FE011D2E248D3D720000434F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE011D2D248D3D720000434F /* ContentView.swift */; };
 		FE011D30248D3D750000434F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE011D2F248D3D750000434F /* Assets.xcassets */; };
 		FE011D33248D3D750000434F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE011D32248D3D750000434F /* Preview Assets.xcassets */; };
 		FE011D36248D3D750000434F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE011D34248D3D750000434F /* Main.storyboard */; };
+		FE011D3F248D3F760000434F /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE011D3E248D3F760000434F /* MainViewController.swift */; };
+		FE011D43248D41100000434F /* AuthDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE011D42248D41100000434F /* AuthDataSource.swift */; };
+		FE011D45248D41770000434F /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE011D44248D41770000434F /* Auth.swift */; };
+		FE011D4B248D43700000434F /* JSONUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE011D4A248D43700000434F /* JSONUtilities.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		FE011D28248D3D720000434F /* Tesla-Auth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tesla-Auth.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE011D2B248D3D720000434F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		FE011D2D248D3D720000434F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		FE011D2F248D3D750000434F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FE011D32248D3D750000434F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		FE011D35248D3D750000434F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FE011D37248D3D750000434F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FE011D38248D3D750000434F /* Tesla_Auth.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Tesla_Auth.entitlements; sourceTree = "<group>"; };
+		FE011D3E248D3F760000434F /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		FE011D42248D41100000434F /* AuthDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthDataSource.swift; sourceTree = "<group>"; };
+		FE011D44248D41770000434F /* Auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Auth.swift; sourceTree = "<group>"; };
+		FE011D4A248D43700000434F /* JSONUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONUtilities.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,8 +61,11 @@
 		FE011D2A248D3D720000434F /* Tesla-Auth */ = {
 			isa = PBXGroup;
 			children = (
+				FE011D49248D43630000434F /* Utilities */,
+				FE011D46248D417A0000434F /* Models  */,
+				FE011D41248D40F00000434F /* Data Sources */,
+				FE011D40248D40E50000434F /* View Controllers */,
 				FE011D2B248D3D720000434F /* AppDelegate.swift */,
-				FE011D2D248D3D720000434F /* ContentView.swift */,
 				FE011D2F248D3D750000434F /* Assets.xcassets */,
 				FE011D34248D3D750000434F /* Main.storyboard */,
 				FE011D37248D3D750000434F /* Info.plist */,
@@ -72,6 +81,38 @@
 				FE011D32248D3D750000434F /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		FE011D40248D40E50000434F /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				FE011D3E248D3F760000434F /* MainViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		FE011D41248D40F00000434F /* Data Sources */ = {
+			isa = PBXGroup;
+			children = (
+				FE011D42248D41100000434F /* AuthDataSource.swift */,
+			);
+			path = "Data Sources";
+			sourceTree = "<group>";
+		};
+		FE011D46248D417A0000434F /* Models  */ = {
+			isa = PBXGroup;
+			children = (
+				FE011D44248D41770000434F /* Auth.swift */,
+			);
+			path = "Models ";
+			sourceTree = "<group>";
+		};
+		FE011D49248D43630000434F /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				FE011D4A248D43700000434F /* JSONUtilities.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -145,8 +186,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FE011D2E248D3D720000434F /* ContentView.swift in Sources */,
+				FE011D43248D41100000434F /* AuthDataSource.swift in Sources */,
 				FE011D2C248D3D720000434F /* AppDelegate.swift in Sources */,
+				FE011D4B248D43700000434F /* JSONUtilities.swift in Sources */,
+				FE011D3F248D3F760000434F /* MainViewController.swift in Sources */,
+				FE011D45248D41770000434F /* Auth.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
