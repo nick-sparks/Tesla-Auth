@@ -720,7 +720,7 @@
                                     <constraint firstAttribute="width" constant="70" id="G08-CJ-G0a"/>
                                     <constraint firstAttribute="height" constant="25" id="qtk-sL-Rqv"/>
                                 </constraints>
-                                <buttonCell key="cell" type="push" title="Submit" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="g0z-jf-BGA">
+                                <buttonCell key="cell" type="push" title="Sign In" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="g0z-jf-BGA">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                     <string key="keyEquivalent" base64-UTF8="YES">
@@ -749,21 +749,35 @@ DQ
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qGp-ni-Rmo">
+                                <rect key="frame" x="184" y="3" width="82" height="32"/>
+                                <buttonCell key="cell" type="push" title="Sign Out" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Qja-Ws-C3U">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="onSignOutClicked:" target="YUr-WB-3uZ" id="c2h-ZP-Vax"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="Ez6-ME-nFq" firstAttribute="centerY" secondItem="Lv3-dp-cFN" secondAttribute="centerY" id="91V-oh-7Mq"/>
                             <constraint firstItem="6ps-nK-MX1" firstAttribute="top" secondItem="Ez6-ME-nFq" secondAttribute="bottom" constant="20" id="K5v-TF-tfq"/>
                             <constraint firstItem="fjy-Lr-iCl" firstAttribute="centerX" secondItem="Lv3-dp-cFN" secondAttribute="centerX" id="ROr-bi-GDR"/>
                             <constraint firstItem="Ez6-ME-nFq" firstAttribute="top" secondItem="fUu-WU-Gb7" secondAttribute="bottom" constant="15" id="XK6-L2-kiY"/>
+                            <constraint firstItem="qGp-ni-Rmo" firstAttribute="leading" secondItem="Ez6-ME-nFq" secondAttribute="leading" id="bZU-VQ-I9W"/>
                             <constraint firstItem="Lzq-Ke-bYj" firstAttribute="top" secondItem="6ps-nK-MX1" secondAttribute="bottom" constant="40" id="efk-So-wGt"/>
                             <constraint firstItem="fUu-WU-Gb7" firstAttribute="top" secondItem="fjy-Lr-iCl" secondAttribute="bottom" constant="10" id="hLI-MZ-KUW"/>
+                            <constraint firstItem="qGp-ni-Rmo" firstAttribute="trailing" secondItem="Ez6-ME-nFq" secondAttribute="trailing" id="hLY-XB-T5o"/>
                             <constraint firstItem="6ps-nK-MX1" firstAttribute="centerX" secondItem="Lv3-dp-cFN" secondAttribute="centerX" id="mf0-dl-odc"/>
                             <constraint firstItem="Lzq-Ke-bYj" firstAttribute="centerX" secondItem="Lv3-dp-cFN" secondAttribute="centerX" id="n5k-5L-t9B"/>
                             <constraint firstItem="fUu-WU-Gb7" firstAttribute="centerX" secondItem="Lv3-dp-cFN" secondAttribute="centerX" id="oP6-Ro-IOM"/>
+                            <constraint firstItem="qGp-ni-Rmo" firstAttribute="top" secondItem="Lzq-Ke-bYj" secondAttribute="bottom" constant="15" id="zG6-Tm-XHQ"/>
                             <constraint firstItem="Ez6-ME-nFq" firstAttribute="centerX" secondItem="Lv3-dp-cFN" secondAttribute="centerX" id="zaj-xU-jfF"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="btnSignOut" destination="qGp-ni-Rmo" id="nVM-p1-qJX"/>
                         <outlet property="btnSubmit" destination="Ez6-ME-nFq" id="xC1-g5-ta8"/>
                         <outlet property="lblError" destination="Lzq-Ke-bYj" id="ni7-jR-MYP"/>
                         <outlet property="progressIndicator" destination="6ps-nK-MX1" id="qS5-oU-Hfb"/>

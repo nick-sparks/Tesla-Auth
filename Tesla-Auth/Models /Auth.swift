@@ -30,6 +30,12 @@ enum AuthError: Error {
     case missingAuthToken
 }
 
+enum AuthStorageKeys: String {
+    case username = "username"
+    case password = "password"
+    case refreshToken = "refreshToken"
+}
+
 class Auth {
     
 }

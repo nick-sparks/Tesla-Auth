@@ -22,6 +22,30 @@ class AuthDataSource {
     var authToken: String?
     
     static let shared = AuthDataSource()
+    
+    internal func isUserRegistered() -> Bool {
+        if (self.authResponse != nil) {
+            return true
+        } else if let refreshToken = SecureStorage.shared.get(AuthStorageKeys.refreshToken.rawValue) {
+            self.triggerRefreshToken(refreshToken: refreshToken)
+            return self.authResponse != nil
+        }
+        
+        return false
+    }
+    
+    internal func getUsername() -> String {
+        guard let username = SecureStorage.shared.get(AuthStorageKeys.username.rawValue) else {
+            return ""
+        }
+        return username
+    }
+    
+    internal func deregister() {
+        self.authResponse = nil
+        SecureStorage.shared.delete(AuthStorageKeys.username.rawValue)
+        SecureStorage.shared.delete(AuthStorageKeys.refreshToken.rawValue)
+    }
 
     internal func registerUser(username: String, password: String, success: @escaping () -> Void, failure: @escaping () -> Void) {
         let params = [
@@ -34,12 +58,36 @@ class AuthDataSource {
         
         self.makeAuthRequest(path: "oauth/token", params: params, success: {() -> Void in
             // Store the user data - it works!
+            SecureStorage.shared.set(username, forKey: AuthStorageKeys.username.rawValue)
+            SecureStorage.shared.set(self.authResponse!.refreshToken, forKey: AuthStorageKeys.refreshToken.rawValue)
             
             success()
         }, failure: failure)
     }
     
+    private func triggerRefreshToken(refreshToken: String) {
+        let semaphore = DispatchSemaphore(value: 0)
+        let params = [
+            "grant_type": "refresh_token",
+            "client_id": CLIENT_ID,
+            "client_secret": CLIENT_SECRET,
+            "refresh_token": refreshToken
+        ]
+        
+        self.makeAuthRequest(path: "oauth/token", params: params, success: {() -> Void in
+            print("Successfully refreshed access token")
+            SecureStorage.shared.set(self.authResponse!.refreshToken, forKey: AuthStorageKeys.refreshToken.rawValue)
+            semaphore.signal()
+        }, failure: {() -> Void in
+            print("Failed to refresh access token")
+            semaphore.signal()
+        })
+        
+        semaphore.wait()
+    }
+    
     private func makeAuthRequest(path: String, params: [String: String], success: @escaping () -> Void, failure: @escaping () -> Void) {
+        self.authResponse = nil
         let urlParams = (params.compactMap({ (key, value) -> String in
             return "\(key)=\(value)"
         }) as Array).joined(separator: "&")
@@ -59,14 +107,14 @@ class AuthDataSource {
             } else {
                 parseData(targetType: AuthResponse.self, data: responseData!) { (authResult, error) in
                     if (error != nil) {
-                        print("Error parsing data from auth response")
+                        print("Error parsing data from auth response " + error!.localizedDescription)
                     }
                     
-                    self.authToken = authResult?.accessToken
+                    self.authResponse = authResult
                 }
             }
             
-            if (self.authToken != nil) {
+            if (self.authResponse != nil) {
                 success()
                 return
             }

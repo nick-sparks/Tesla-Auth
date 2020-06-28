@@ -12,7 +12,6 @@ private let jsonDecoder = JSONDecoder()
 
 public func parseData<T: Decodable>(targetType: T.Type, data: Data, completion: (T?, Error?) -> Void) {
     do {
-        
         let result = try jsonDecoder.decode(targetType.self, from: data)
         completion(result, nil)
     } catch {

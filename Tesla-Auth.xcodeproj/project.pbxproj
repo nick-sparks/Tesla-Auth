@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -15,6 +15,8 @@
 		FE011D43248D41100000434F /* AuthDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE011D42248D41100000434F /* AuthDataSource.swift */; };
 		FE011D45248D41770000434F /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE011D44248D41770000434F /* Auth.swift */; };
 		FE011D4B248D43700000434F /* JSONUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE011D4A248D43700000434F /* JSONUtilities.swift */; };
+		FE86CB2F24A8D09F002E615E /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = FE86CB2E24A8D09F002E615E /* KeychainSwift */; };
+		FE8FB6AA24A8BD6200BBA646 /* SecureStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8FB6A924A8BD6200BBA646 /* SecureStorage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +31,7 @@
 		FE011D42248D41100000434F /* AuthDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthDataSource.swift; sourceTree = "<group>"; };
 		FE011D44248D41770000434F /* Auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Auth.swift; sourceTree = "<group>"; };
 		FE011D4A248D43700000434F /* JSONUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONUtilities.swift; sourceTree = "<group>"; };
+		FE8FB6A924A8BD6200BBA646 /* SecureStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureStorage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +39,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FE86CB2F24A8D09F002E615E /* KeychainSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -111,6 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				FE011D4A248D43700000434F /* JSONUtilities.swift */,
+				FE8FB6A924A8BD6200BBA646 /* SecureStorage.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -131,6 +136,9 @@
 			dependencies = (
 			);
 			name = "Tesla-Auth";
+			packageProductDependencies = (
+				FE86CB2E24A8D09F002E615E /* KeychainSwift */,
+			);
 			productName = "Tesla-Auth";
 			productReference = FE011D28248D3D720000434F /* Tesla-Auth.app */;
 			productType = "com.apple.product-type.application";
@@ -159,6 +167,9 @@
 				Base,
 			);
 			mainGroup = FE011D1F248D3D720000434F;
+			packageReferences = (
+				FE86CB2D24A8D09F002E615E /* XCRemoteSwiftPackageReference "keychain-swift" */,
+			);
 			productRefGroup = FE011D29248D3D720000434F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -186,6 +197,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FE8FB6AA24A8BD6200BBA646 /* SecureStorage.swift in Sources */,
 				FE011D43248D41100000434F /* AuthDataSource.swift in Sources */,
 				FE011D2C248D3D720000434F /* AppDelegate.swift in Sources */,
 				FE011D4B248D43700000434F /* JSONUtilities.swift in Sources */,
@@ -389,6 +401,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		FE86CB2D24A8D09F002E615E /* XCRemoteSwiftPackageReference "keychain-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/evgenyneu/keychain-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 19.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		FE86CB2E24A8D09F002E615E /* KeychainSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FE86CB2D24A8D09F002E615E /* XCRemoteSwiftPackageReference "keychain-swift" */;
+			productName = KeychainSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = FE011D20248D3D720000434F /* Project object */;
 }

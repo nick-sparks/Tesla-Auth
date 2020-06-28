@@ -14,12 +14,23 @@ class MainViewController: NSViewController, NSTextFieldDelegate {
     @IBOutlet weak var progressIndicator: NSProgressIndicator!
     @IBOutlet weak var btnSubmit: NSButton!
     @IBOutlet weak var lblError: NSTextField!
+    @IBOutlet weak var btnSignOut: NSButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         txtEmail.delegate = self
         txtPassword.delegate = self
+        
+        let alreadyRegistered = AuthDataSource.shared.isUserRegistered()
+        if (alreadyRegistered) {
+            self.toggleInputs()
+            self.updateLableVisibilityAndText(newText: "You're already logged in, silly!", isHidden: false, colour: NSColor.green)
+        }
+    }
+    @IBAction func onSignOutClicked(_ sender: NSButton) {
+        AuthDataSource.shared.deregister()
+        self.toggleInputs()
     }
     
     @IBAction func onClick(_ sender: NSButton) {
@@ -31,9 +42,7 @@ class MainViewController: NSViewController, NSTextFieldDelegate {
             print("auth success")
             DispatchQueue.main.async {
                 self.stopProgressIndicator()
-                self.btnSubmit.isEnabled = false
-                self.txtEmail.isEnabled = false
-                self.txtPassword.isEnabled = false
+                self.toggleInputs()
                 self.updateLableVisibilityAndText(newText: "Well done - woooo! :)", isHidden: false, colour: NSColor.green)
             }
         }, failure: {() -> Void in
@@ -65,6 +74,15 @@ class MainViewController: NSViewController, NSTextFieldDelegate {
         let text = textField.stringValue
         
         return (text.count > 0, "You need to enter text an email AND password! (please)")
+    }
+    
+    private func toggleInputs() {
+        let currentStatus = self.btnSubmit.isEnabled
+        
+        self.btnSubmit.isEnabled = !currentStatus
+        self.txtEmail.isEnabled = !currentStatus
+        self.txtPassword.isEnabled = !currentStatus
+        self.btnSignOut.isEnabled = currentStatus
     }
     
     private func updateLableVisibilityAndText(newText: String, isHidden: Bool, colour: NSColor = NSColor.red) {
